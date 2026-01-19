@@ -48,12 +48,9 @@ func _process(delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.from_angle(rotation) * top_speed, accel * delta)
 	
-	# if Input.is_action_just_pressed("ui_accept"):
-	# 	print("Roomba position: ", global_position, " rotation: ", rotation)
+	# If we've moved far enough since last cleaning, clean again.
 	if position.distance_to(prev_clean_position) >= clean_distance:
-		prev_clean_position = position
 		clean_filth()
-	# cleaner.clean_filth(State.filth_layer)
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -66,7 +63,9 @@ func _bumper_check() -> bool:
 
 func clean_filth() -> void:
 	filth_cleaned += cleaner.clean_filth(State.filth_layer)
+	prev_clean_position = position
 	clean_timer.start()
+
 	print(filth_cleaned)
 
 
