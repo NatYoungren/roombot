@@ -6,3 +6,6 @@ var current_level: Node2D
 
 var money: int = 0
 
+
+# TODO: Store multiple?
+var filth_layer: FilthLayer # Reference to the filth layer in the current level
