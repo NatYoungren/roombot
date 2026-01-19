@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://clbd3xh7l0wi5"]
+
+[ext_resource type="PackedScene" uid="uid://pkn2ikxrwsv8" path="res://scenes/house.tscn" id="1_nbq8v"]
+[ext_resource type="PackedScene" path="res://scenes/roomba_basic.tscn" id="2_0cpfe"]
+
+[node name="testing_level" type="Node2D"]
+
+[node name="House" parent="." instance=ExtResource("1_nbq8v")]
+
+[node name="Roomba_Basic" parent="." instance=ExtResource("2_0cpfe")]
+position = Vector2(421, 351)
