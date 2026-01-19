@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvg8316hkghy"]
+
+[ext_resource type="Script" uid="uid://dxbal0aa43awy" path="res://scripts/filth_layer.gd" id="1_wq0e7"]
+
+[node name="filth_layer" type="Node2D"]
+script = ExtResource("1_wq0e7")
+img_size = Vector2i(320, 256)
+
+[node name="sprite" type="Sprite2D" parent="."]
+centered = false
