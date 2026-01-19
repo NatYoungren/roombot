@@ -1,0 +1,13 @@
+RoomBot: Todo List
+
+
+Big Picture:
+	1. Make a working test level, w/ roomba and dust.
+	2. Add upgrades / currency / progression.
+	3. Add more rooms / roombas.
+
+Next Steps:
+	1. Roomba entity.
+	2. Room to roll around in.
+	3. Dust / dust collection.
+	4. Profit.
