@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxauipst7macc"]
+[gd_scene load_steps=7 format=3 uid="uid://dxauipst7macc"]
 
 [ext_resource type="Script" uid="uid://bqw08d4gmla78" path="res://scripts/roomba_basic.gd" id="1_arrrk"]
 [ext_resource type="Texture2D" uid="uid://dtyiftl6sphgl" path="res://assets/roomba_1.png" id="1_ia0pm"]
-[ext_resource type="Script" uid="uid://d21e4yt3k4j02" path="res://scripts/cleaners/cleaner.gd" id="3_4g0ax"]
+[ext_resource type="Script" uid="uid://dwl6ik1ryj0sa" path="res://scripts/cleaners/circle_cleaner.gd" id="3_4g0ax"]
+[ext_resource type="Script" uid="uid://bvc4hd371ra82" path="res://scripts/cleaners/rect_cleaner.gd" id="4_2jlxg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ia0pm"]
 radius = 17.0
@@ -33,6 +34,8 @@ position = Vector2(2, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_arrrk")
 
-[node name="Cleaner" type="Node2D" parent="."]
+[node name="CircleCleaner" type="Node2D" parent="."]
 script = ExtResource("3_4g0ax")
-metadata/_custom_type_script = "uid://d21e4yt3k4j02"
+
+[node name="RectCleaner" type="Node2D" parent="."]
+script = ExtResource("4_2jlxg")

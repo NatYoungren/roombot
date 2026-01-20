@@ -2,7 +2,8 @@ class_name RoombaBasic extends CharacterBody2D
 
 @onready var bumper_area: Area2D = $bumper_area
 
-@onready var cleaner: Cleaner = $Cleaner # Cleaning AoE
+@onready var cleaner: BaseCleaner = $CircleCleaner # Cleaning AoE
+#@onready var cleaner: BaseCleaner = $RectCleaner # Cleaning AoE (Testing rectangular shape)
 
 
 ## Max speed of the roomba.
@@ -68,7 +69,7 @@ func _bumper_check() -> bool:
 
 
 func clean_filth() -> void:
-	filth_cleaned += cleaner.clean_filth(State.filth_layer)
+	filth_cleaned += cleaner.clean(State.filth_layer)
 	prev_clean_position = position
 	clean_timer.start()
 
