@@ -10,6 +10,7 @@ Next Steps:
 X	1. Roomba entity.
 X	2. Room to roll around in.
 X	3. Dust / dust collection.
-	4. Profit (filth -> money).
-	5. Game BONES: Simple UI, main menu, upgrade/purchasing screen, saving/loading game data.
+	4. Flesh out the filth/debris/cleaning system.
+	5. Profit (filth -> money).
+	6. Game BONES: Simple UI, main menu, upgrade/purchasing screen, saving/loading game data.
 
