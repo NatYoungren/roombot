@@ -1,11 +1,11 @@
-class_name Cleaner extends Node2D
+## Cleans a circle of filth around the cleaner's position.
+class_name CircleCleaner extends BaseCleaner
 
 @export var radius: float = 16.0
 
 
-
 ## Cleans filth from the given FilthLayer node within the specified radius and strength.
-func clean_filth(filth_layer: Node2D) -> float:
+func clean(filth_layer: Node2D) -> float:
 	if not filth_layer is FilthLayer:
 		push_error("clean_filth: Provided node is not a FilthLayer.")
 		return 0.0
