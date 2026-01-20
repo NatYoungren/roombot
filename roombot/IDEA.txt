@@ -1,0 +1,177 @@
+RoomBot: Idea List
+
+----------------------------------------------------------------------------------------
+
+Roomba Types:
+	Different styles of roomba.
+
+	---------------------------------------
+	SIMPLE ROOMBAS:
+		These are basic roombas which have very easy-to-implement behavior.
+
+		~ Basic Roomba:
+			Moves until it hits something, turns, continues.
+			Not great with corners and complicated rooms.
+			Not great at following the walls.
+			Very satisfying WHEN it succeeds, because it kinda sucks.
+
+		~ Corner Cleaner:
+			Rectangular, makes 90 degree turns without rotating body, follows closely along walls.
+			Basically just hugs the outside of the room and cleans the edge.
+			Could get stuck in rooms with inward-angled corners.
+
+		~ Micro Roomba:
+			Smaller and faster.
+			Does not 'stop and turn', instead it pingpongs around.
+	
+	---------------------------------------
+	INTERMEDIATE ROOMBAS:
+		These have more unique behavior, requiring a bit of thought / effort.
+		
+		~ Laser Roomba:
+			Cleans one section at a time, we can easily animate a laser scrolling back and forth, zapping away filth.
+			Could also be a 'full-room' cleaning, which has a very long cooldown / is slow?
+
+		~ Circler Roomba: ?
+			Constantly turns, slowly shifting between left and right turns.
+			Kinda does circular curves, scrapes along walls.
+			Bounce on wall touch like basic roomba?
+		
+		~ Mop Bucket Roomba:
+			Moves to a dense patch of filth and sprays soapy water everywhere to clean a big AoE.
+			Would look cool if little soap particles clean a small circle wherever they land.
+				Probably not that difficult to implement either!
+			Needs to recharge between activations.
+
+		~ Incinerator Roomba:
+			Uses a flamethrower to burn away 'debris', but creates black soot filth when it does this.
+		
+		~ Shredder Roomba:
+			Uses a woodchipper/shredder to obliterate debris, but sprays out filth particles / smaller debris when it does this.
+
+	---------------------------------------
+	ADVANCED ROOMBAS:
+		These have complicated behavior, more effort needed to get them working.
+
+		~ Smart Roomba:
+			Uses different movement logic.
+			Options:
+				Pathfinds around room in a set pattern.
+				When turning, aims towards the densest nearby filth.
+
+		~ Mothership Roomba:
+			Moves slowly.
+			Surrounded by smaller roomba drones.
+				Drones could aim for dirtiest spots nearby.
+				Or, just circle mothership, constantly cleaning.
+
+----------------------------------------------------------------------------------------
+
+Roomba Interaction:
+	Roombas get some on-click function?
+
+	~ Basic roomba: Toggles turn direction between left and right.
+
+	~ Corner Cleaner: Reverses direction (clockwise/counterclockwise)
+
+	~ Mop Bucket Roomba: Clean in a bigger AoE, on cooldown.
+
+	?: Speed up and pingpong around, on cooldown?
+
+----------------------------------------------------------------------------------------
+
+Dopamine Enhancers:
+	Randomness to mix things up!
+
+	---------------------------------------
+	Temporary Powerups:
+		Roombas can run over them and pick them up.
+
+		~ Energy Drink Can:
+			Speed buff
+
+		~ Batteries:
+			Cleaning AoE buff (Should roomba visually scale up?)
+			AND/OR recharge roomba batteries?
+		
+		~ Cheese:
+			Attracts rats and mice while sitting around on the floor.
+			Once picked up, rats and mice come running out of the walls and dive straight into the roomba.
+
+	---------------------------------------
+	Random Events:
+		Occasional events which create fun moments and additional filth.
+
+		~ Slime mold:
+			Temporary filth layer which grows outward constantly.
+			Tries to maintain some level of coverage (~50/75% of the floor)
+			Sort of a 'gold rush' event.
+
+		~ Package delivery:
+			Package flung through wall/window.
+			Scatters glass/plaster/packing peanuts everywhere.
+			Box could be larger debris.
+			Occasionally/always happens when ordering upgrades/roombas/house-features.
+
+		~ Shedding Season:
+			Pets produce constant fur/filth for a duration.
+			Scales with number of pets.
+			Allergy bonus (sneezing everywhere)
+
+		~ Leaky Ceiling:
+			Filth appears under slowly growingleaks.
+			New leaks keep appearing for a while.
+			Ends with 'ceiling collapse', plaster/junk/debris all over the floor.
+
+----------------------------------------------------------------------------------------
+
+Home upgrades:
+	A lived-in home is always filthier!
+
+	---------------------------------------
+	Furniture:
+		Furniture is an obstacle, but also a filth nexus.
+		NOTE: This would be a pain to implement, and maybe create too many issues.
+			(i.e. trapped roombas, glitchy collision, bad pathfinding)
+
+		~ Couch/Bed/Chair:
+			Only some roombas can go under it.
+			Builds more filth underneath / around.
+
+		~ Table:
+			More filth appears around a table.
+
+		~ Rug:
+			Attracts filth.
+			Can be moved to reveal dense filth underneath.
+			? Roomba movement is slightly affected while traveling across rugs ?
+
+		~ Door / Pet Door:
+			Creates more filth nearby.
+
+		~ Litterbox:
+			Dust everywhere.
+
+	---------------------------------------
+	Occupants:
+		Living things are filthy.
+		NOTE: The simplest implementation is just to increase passive filth generation.
+			(Could also add more 'types' of filth, and different random events.)
+		NOTE: Displaying occupants moving around would be a lot of pointless work.
+			(At MOST, we could show 'shadows'/footprints, but that is still unnecessary I think).
+
+		~ Cats:
+			Creates fur, hairballs, feathers, poop/pee, cat litter, cat food.
+			Shedding season events.
+		
+		~ Dogs:
+			Creates fur, pawprints, drool, dog food, poop/pee.
+			When raining, will 'shake' and spray mud/water everywhere.
+			Shedding season events.
+		
+		~ Bird: ?
+			Creates feathers, shredded paper, food, bird poop.
+			Linked to birdcage furniture?
+		
+		~ Children/People: ?
+			General filth.
