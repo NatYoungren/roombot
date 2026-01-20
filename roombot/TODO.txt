@@ -6,6 +6,8 @@ X	1. Make a working test level, w/ roomba and dust.
 	2. Add upgrades / currency / progression.
 	4. Add more rooms / roombas.
 
+
+
 Next Steps:
 X	1. Roomba entity.
 X	2. Room to roll around in.
@@ -14,3 +16,23 @@ X	3. Dust / dust collection.
 	5. Profit (filth -> money).
 	6. Game BONES: Simple UI, main menu, upgrade/purchasing screen, saving/loading game data.
 
+
+
+Art Todos:
+	1. Filth/debris sprites
+	2. New tiles
+		Inner/outer wall corner
+		doorway
+		'background' tiles [dark w/ minimal pattern]
+		window?
+		wall outlet?
+	3. New roombas
+		(See IDEA.txt)
+	4. Interface
+		Menu background
+		Menu buttons
+		UI buttons
+		UI menus (upgrade/purchase/pause menus)
+	5. Powerup pickups
+		Batteries
+		Energy drink
