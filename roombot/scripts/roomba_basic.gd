@@ -6,13 +6,13 @@ class_name RoombaBasic extends CharacterBody2D
 
 
 ## Max speed of the roomba.
-var top_speed: float = 100.0
+@export var top_speed: float = 100.0
 
 ## Acceleration of the roomba.
-var accel: float = 200.0
+@export var accel: float = 200.0
 
 ## Radians per second of turning speed.
-var turn_speed: float = PI
+@export var turn_speed: float = PI
 
 ## Angle (radians) that roomba is currently turning towards.
 ## If null, roomba is moving forward.
@@ -47,10 +47,16 @@ func _process(delta: float) -> void:
 	# Move forward.
 	else:
 		velocity = velocity.move_toward(Vector2.from_angle(rotation) * top_speed, accel * delta)
+
+		# rotation += randf_range(-0.05, 0.05) # Slight random wobble to movement, looks kinda cool.
 	
 	# If we've moved far enough since last cleaning, clean again.
 	if position.distance_to(prev_clean_position) >= clean_distance:
 		clean_filth()
+	
+	# Press SPACE to completely fill filth layer, for testing.
+	if Input.is_action_just_pressed("ui_accept"):
+		State.filth_layer.debug_fill_image()
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
