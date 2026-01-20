@@ -20,33 +20,41 @@ class_name RoombaBasic extends CharacterBody2D
 var target_angle = null 
 
 
-var prev_clean_position: Vector2 = Vector2.ZERO
-var clean_timer: Timer
-var clean_distance: float = 2.0
+# NOTE: Cleaning can be triggered by two conditions:
+#	1. Distance traveled since previous cleaning.
+#	2. Time since last cleaning.
+#		Time is used to clean while motionless/rotating, distance is used to clean while moving.
+#		This is done to avoid cleaning on every single frame.
+var prev_clean_position: Vector2 = Vector2.ZERO # Position of previous cleaning
+var clean_distance: float = 2.0 # Distance from prev_clean_position which triggers cleaning
+var clean_timer: Timer # Timer between cleaning triggers
 
 
-var filth_cleaned: float = 0.0
+var filth_cleaned: float = 0.0 # Tally of cleaned filth (pixel opacity)
 
 
 
 func _process(delta: float) -> void:
 	
-	# If moving forward and bumper is hit, pick a new target angle to turn towards.
+	# If not turning AND bumper is hit, pick a new target angle to turn towards.
 	if target_angle == null and _bumper_check():
 		target_angle = wrapf(rotation + randf_range(PI/8, PI * 3/8), -PI, PI)
-		velocity = Vector2.ZERO
+		velocity = Vector2.ZERO # Stop moving!
 		# print("Bumper hit! New target angle: ", target_angle)
 
 	# If we have a target angle, turn towards it.
 	elif target_angle != null:
-		rotation = Utils.turn_towards(rotation, target_angle, turn_speed * delta)
 		# print("turning towards ", target_angle, " current rotation: ", rotation)
+		rotation = Utils.turn_towards(rotation, target_angle, turn_speed * delta)
+		
+	 	# If close to desired angle, stop turning. (avoids float precision issues)
 		if abs(rotation - target_angle) < 0.05:
 			# print("Reached target angle: ", target_angle)
 			target_angle = null
 	
 	# Move forward.
 	else:
+		# Accelerates to top speed.
 		velocity = velocity.move_toward(Vector2.from_angle(rotation) * top_speed, accel * delta)
 
 		# rotation += randf_range(-0.05, 0.05) # Slight random wobble to movement, looks kinda cool.
@@ -59,6 +67,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		State.filth_layer.debug_fill_image()
 
+
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
@@ -68,14 +77,16 @@ func _bumper_check() -> bool:
 	return not bumper_area.get_overlapping_bodies().is_empty()
 
 
+# Activate cleaner node, reset stored position and timer.
 func clean_filth() -> void:
 	filth_cleaned += cleaner.clean(State.filth_layer)
 	prev_clean_position = position
 	clean_timer.start()
+	
+	print("Filth cleaned: ", filth_cleaned)
 
-	print(filth_cleaned)
 
-
+# Create clean_timer
 func _ready() -> void:
 	clean_timer = Timer.new()
 	clean_timer.wait_time = 0.2
