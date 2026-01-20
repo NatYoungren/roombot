@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqw08d4gmla78" path="res://scripts/roomba_basic.gd" id="1_arrrk"]
 [ext_resource type="Texture2D" uid="uid://dtyiftl6sphgl" path="res://assets/roomba_1.png" id="1_ia0pm"]
-[ext_resource type="Script" uid="uid://d21e4yt3k4j02" path="res://scripts/cleaner.gd" id="3_4g0ax"]
+[ext_resource type="Script" uid="uid://d21e4yt3k4j02" path="res://scripts/cleaners/cleaner.gd" id="3_4g0ax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ia0pm"]
 radius = 17.0
