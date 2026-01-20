@@ -1,0 +1,10 @@
+{
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "*.gd": "${capture}.gd.uid",
+        "*.gdshader": "${capture}.gdshader.uid",
+        "*.svg": "${capture}.svg.import",
+        "*.png": "${capture}.png.import"
+
+    }
+}
