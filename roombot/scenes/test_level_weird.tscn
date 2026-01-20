@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgpeyx4qak63x"]
+
+[ext_resource type="PackedScene" uid="uid://pkn2ikxrwsv8" path="res://scenes/house.tscn" id="1_sw0d3"]
+[ext_resource type="PackedScene" uid="uid://dvg8316hkghy" path="res://scenes/filth_layer.tscn" id="2_vky4o"]
+[ext_resource type="PackedScene" uid="uid://dxauipst7macc" path="res://scenes/roomba_basic.tscn" id="3_821sw"]
+
+[node name="test_level_weird" type="Node2D"]
+
+[node name="House" parent="." instance=ExtResource("1_sw0d3")]
+
+[node name="filth_layer" parent="." instance=ExtResource("2_vky4o")]
+position = Vector2(705, 128)
+img_size = Vector2i(416, 384)
+
+[node name="Roomba_Basic" parent="." instance=ExtResource("3_821sw")]
+position = Vector2(787, 293)
