@@ -11,3 +11,27 @@ Next Steps:
 	2. Room to roll around in.
 	3. Dust / dust collection.
 	4. Profit.
+
+
+
+
+
+Roomba Types:
+	Corner Cleaner:
+		Rectangular, makes 90 degree turns without rotating body, follows closely along walls.
+		Basically just hugs the outside of the room and cleans the edge.
+	Laser Roomba:
+		Cleans one section at a time, we can easily animate a laser scrolling back and forth, zapping away filth.
+		Could also be a 'full-room' cleaning, which has a very long cooldown / is slow?
+	Circler Roomba:
+		Constantly turns, slowly shifting between left and right turns.
+		Kinda does circular curves, scrapes along walls.
+		Bounce on wall touch like basic roomba?
+
+
+Roomba Interaction:
+	Roombas get some on-click function?
+		Basic roomba: Toggles turn direction between left and right.
+		Corner Cleaner: Reverses direction (clockwise/counterclockwise)
+		?: Clean in a bigger AoE, on cooldown.
+		?: Speed up and pingpong around, on cooldown?
