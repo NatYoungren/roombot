@@ -1,5 +1,11 @@
 class_name FilthLayer extends Node2D
 
+# NOTE: Since imgs must be rectangular, we could combine multiple layers to make more complex rooms.
+#		i.e. Each rectangular area is one filth_layer.
+#			These could be managed by one interface which handles the drawing/cleaning.
+
+
+
 # TODO:
 # fix_alpha_edges could be useful to clean up edges after drawing/erasing.
 
@@ -12,6 +18,7 @@ var image: Image
 var debug_color: Color = Color.GREEN
 
 var refresh_needed: bool = false
+
 
 # # #
 # Initialization
@@ -28,6 +35,7 @@ func _ready() -> void:
 	# Store self-reference in global state.
 	# TODO: This only supports one filth layer at a time.
 	State.filth_layer = self
+
 
 # # #
 # Public methods
@@ -76,13 +84,13 @@ func apply_image_at(x: int, y: int, src_img: Image, alpha_mod: float = 1.0, skip
 			# TODO: Blend pixels?
 			color_pixel(x + src_x, y + src_y, src_clr)
 
-
 func apply_image_from_file(x: int, y: int, file_path: String, alpha_mod: float = 1.0) -> void:
 	var src_img: Image = Image.new()
 	var _err: Error = src_img.load(file_path) # TODO: Causes a warning. Preload images.
 	#print("Loaded image from file ", file_path, ": ", _err)
 	
 	apply_image_at(x, y, src_img, alpha_mod)
+
 
 # # #
 # Debug methods
@@ -109,4 +117,3 @@ func _process(_delta: float) -> void:
 	#if refresh_needed: 
 		#sprite.texture = ImageTexture.create_from_image(image)
 		#refresh_needed = false
-		

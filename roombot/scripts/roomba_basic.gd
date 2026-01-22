@@ -31,6 +31,7 @@ var clean_timer: Timer # Timer between cleaning triggers
 
 
 var filth_cleaned: float = 0.0 # Tally of cleaned filth (pixel opacity)
+var filth_to_money_ratio: float = 0.1 # Conversion ratio of filth cleaned to money earned
 
 
 
@@ -56,16 +57,19 @@ func _process(delta: float) -> void:
 	else:
 		# Accelerates to top speed.
 		velocity = velocity.move_toward(Vector2.from_angle(rotation) * top_speed, accel * delta)
-
 		# rotation += randf_range(-0.05, 0.05) # Slight random wobble to movement, looks kinda cool.
 	
 	# If we've moved far enough since last cleaning, clean again.
 	if position.distance_to(prev_clean_position) >= clean_distance:
 		clean_filth()
 	
+	# # #
+	# DEBUG (MOVE THESE TO A GLOBAL/SINGLETON INPUT HANDLER FILE?)
+	
 	# Press SPACE to completely fill filth layer, for testing.
 	if Input.is_action_just_pressed("ui_accept"):
 		State.filth_layer.debug_fill_image()
+	
 	# Press LEFT to add random junk filth, for testing.
 	if Input.is_action_just_pressed("ui_left"):
 		State.filth_layer.random_junk()
@@ -82,7 +86,10 @@ func _bumper_check() -> bool:
 
 # Activate cleaner node, reset stored position and timer.
 func clean_filth() -> void:
-	filth_cleaned += cleaner.clean(State.filth_layer)
+	var cleaned: float = cleaner.clean(State.filth_layer)
+	filth_cleaned += cleaned
+	State.money += cleaned * filth_to_money_ratio
+
 	prev_clean_position = position
 	clean_timer.start()
 	#print("Filth cleaned: ", filth_cleaned)
