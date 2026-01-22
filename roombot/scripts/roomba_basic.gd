@@ -31,7 +31,7 @@ var clean_timer: Timer # Timer between cleaning triggers
 
 
 var filth_cleaned: float = 0.0 # Tally of cleaned filth (pixel opacity)
-var filth_to_money_ratio: float = 0.1 # Conversion ratio of filth cleaned to money earned
+var filth_to_money_ratio: float = 0.01 # Conversion ratio of filth cleaned to money earned
 
 
 
