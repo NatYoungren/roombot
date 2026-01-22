@@ -1,12 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://clbd3xh7l0wi5"]
 
 [ext_resource type="PackedScene" uid="uid://pkn2ikxrwsv8" path="res://scenes/house.tscn" id="1_paw1w"]
-[ext_resource type="Script" uid="uid://dobnc4b3o76u7" path="res://scripts/test_level.gd" id="1_x4b8f"]
 [ext_resource type="PackedScene" uid="uid://dxauipst7macc" path="res://scenes/roomba_basic.tscn" id="2_j6w7d"]
 [ext_resource type="PackedScene" uid="uid://dvg8316hkghy" path="res://scenes/filth_layer.tscn" id="2_x4b8f"]
+[ext_resource type="Script" uid="uid://dcb05868ql6t2" path="res://scripts/money_label.gd" id="5_tmr53"]
 
 [node name="test_level" type="Node2D"]
-script = ExtResource("1_x4b8f")
 
 [node name="House" parent="." instance=ExtResource("1_paw1w")]
 
@@ -17,8 +16,9 @@ img_size = Vector2i(352, 288)
 [node name="Roomba_Basic" parent="." instance=ExtResource("2_j6w7d")]
 position = Vector2(421, 351)
 
-[node name="Label" type="Label" parent="."]
+[node name="money_label" type="Label" parent="."]
 offset_right = 328.0
 offset_bottom = 55.0
 theme_override_font_sizes/font_size = 40
 text = "MONEY"
+script = ExtResource("5_tmr53")
