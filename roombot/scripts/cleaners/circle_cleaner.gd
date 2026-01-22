@@ -11,13 +11,11 @@ func clean(filth_layer: Node2D) -> float:
 		return 0.0
 	
 	var cleaned_amount: float = 0.0
-
 	
 	# TODO: Make some Utility methods for:
 	#		Clean circle
 	#		Clean rect (considering rotation)
 	#		Clean triangle ? (probably not important)
-
 	
 	var filth_coords: Vector2 = filth_layer.to_local(global_position)
 
@@ -26,6 +24,6 @@ func clean(filth_layer: Node2D) -> float:
 			var dist: float = filth_coords.distance_to(Vector2(x, y))
 			
 			if dist <= radius:
-				cleaned_amount += filth_layer.clean_pixel(Vector2i(x, y))
+				cleaned_amount += filth_layer.clean_pixel(x, y)
 				
 	return cleaned_amount

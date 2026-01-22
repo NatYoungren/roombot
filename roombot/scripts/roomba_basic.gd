@@ -66,6 +66,9 @@ func _process(delta: float) -> void:
 	# Press SPACE to completely fill filth layer, for testing.
 	if Input.is_action_just_pressed("ui_accept"):
 		State.filth_layer.debug_fill_image()
+	# Press LEFT to add random junk filth, for testing.
+	if Input.is_action_just_pressed("ui_left"):
+		State.filth_layer.random_junk()
 
 
 func _physics_process(_delta: float) -> void:
@@ -82,8 +85,7 @@ func clean_filth() -> void:
 	filth_cleaned += cleaner.clean(State.filth_layer)
 	prev_clean_position = position
 	clean_timer.start()
-	
-	print("Filth cleaned: ", filth_cleaned)
+	#print("Filth cleaned: ", filth_cleaned)
 
 
 # Create clean_timer
