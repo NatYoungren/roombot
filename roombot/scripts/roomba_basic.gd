@@ -18,8 +18,9 @@ func _process(delta: float) -> void:
 	if target_angle == null and _bumper_check():
 		target_angle = wrapf(rotation + turn_dir * randf_range(PI/8, PI * 3/8), -PI, PI)
 		tween_bumper_bonk(velocity.length())
+
 		velocity = Vector2.ZERO # Stop moving!
-		# print("Bumper hit! New target angle: ", target_angle)
+		# velocity *= 0.25 # Stop moving!
 	
 	# If we have a target angle, turn towards it.
 	elif target_angle != null:
@@ -27,7 +28,7 @@ func _process(delta: float) -> void:
 		rotation = Utils.turn_towards(rotation, target_angle, turn_speed * delta)
 		
 		# If close to desired angle, stop turning. (avoids float precision issues)
-		if abs(rotation - target_angle) < 0.05:
+		if abs(rotation - target_angle) < 0.05: # TODO: THIS COULD STILL WHIFF. Change to check 'if turned more than x'.
 			# print("Reached target angle: ", target_angle)
 			target_angle = null
 	
