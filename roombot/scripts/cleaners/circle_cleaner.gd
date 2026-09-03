@@ -2,6 +2,8 @@
 class_name CircleCleaner extends BaseCleaner
 
 @export var radius: float = 16.0
+@export var reliability: float = 1.0 # 0-1 chance of cleaning each pixel.
+# @export var strength: float = 1.0 # Amount of opacity to remove from each pixel (0-1)
 
 
 ## Cleans filth from the given FilthLayer node within the specified radius and strength.
@@ -24,6 +26,7 @@ func clean(filth_layer: Node2D) -> float:
 			var dist: float = filth_coords.distance_to(Vector2(x, y))
 			
 			if dist <= radius:
+				if randf() > reliability: continue
 				cleaned_amount += filth_layer.clean_pixel(x, y)
 				
 	return cleaned_amount

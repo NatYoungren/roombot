@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvg8316hkghy"]
+[gd_scene format=3 uid="uid://dvg8316hkghy"]
 
 [ext_resource type="Script" uid="uid://dxbal0aa43awy" path="res://scripts/filth_layer.gd" id="1_wq0e7"]
 
-[node name="filth_layer" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_wq0e7"]
+offsets = PackedFloat32Array(0, 0.2016129, 0.38172042, 0.54569894, 0.75537634)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.712, 1, 1, 1, 1, 1, 1, 1, 0.73, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x188o"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qyuj8"]
+noise = SubResource("FastNoiseLite_x188o")
+color_ramp = SubResource("Gradient_wq0e7")
+
+[node name="filth_layer" type="Node2D" unique_id=1787933372]
 script = ExtResource("1_wq0e7")
 img_size = Vector2i(320, 256)
+debug_color = Color(0.58824646, 0.29337206, 0, 0.5)
 
-[node name="sprite" type="Sprite2D" parent="."]
+[node name="mask" type="Sprite2D" parent="." unique_id=1776482422]
+clip_children = 1
+texture = SubResource("NoiseTexture2D_qyuj8")
+centered = false
+
+[node name="sprite" type="Sprite2D" parent="mask" unique_id=977677041]
 centered = false

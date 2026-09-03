@@ -9,13 +9,17 @@ class_name FilthLayer extends Node2D
 # TODO:
 # fix_alpha_edges could be useful to clean up edges after drawing/erasing.
 
-@onready var sprite: Sprite2D = $sprite
+
+@onready var mask: Sprite2D = $mask
+@onready var sprite: Sprite2D = $mask/sprite
+
+#@onready var sprite: Sprite2D = $sprite
 
 @export var img_size: Vector2i = Vector2i(256, 256)
 
 var image: Image
 
-var debug_color: Color = Color.GREEN
+@export var debug_color: Color = Color.GREEN
 
 var refresh_needed: bool = false
 
@@ -24,6 +28,8 @@ var refresh_needed: bool = false
 # Initialization
 
 func _init_image(size: Vector2i = img_size) -> Image:
+	mask.texture.width = size.x
+	mask.texture.height = size.y
 	var img: Image = Image.create_empty(size.x, size.y, false, Image.FORMAT_RGBA8) # TODO: Try simpler formats (1/2 channels)
 	return img
 
