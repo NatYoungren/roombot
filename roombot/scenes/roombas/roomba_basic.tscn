@@ -24,7 +24,7 @@ cleaner = NodePath("CircleCleaner")
 
 [node name="OutlineSprite" type="Sprite2D" parent="." unique_id=32151200]
 visible = false
-modulate = Color(1, 1, 1, 0.5)
+self_modulate = Color(1, 1, 1, 0.5019608)
 texture_filter = 1
 texture = ExtResource("2_sipw8")
 vframes = 4
