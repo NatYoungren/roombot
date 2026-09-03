@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://dvg8316hkghy" path="res://scenes/filth_layer.tscn" id="2_x4b8f"]
 [ext_resource type="PackedScene" uid="uid://dp1omvbo5p6sv" path="res://scenes/roombas/roomba_corner.tscn" id="5_qcd3b"]
 [ext_resource type="PackedScene" uid="uid://ylmya027krnu" path="res://scenes/hud.tscn" id="5_tmr53"]
+[ext_resource type="PackedScene" uid="uid://cpljcmr7m86qa" path="res://scenes/stations/power_cord.tscn" id="6_qcd3b"]
+[ext_resource type="PackedScene" uid="uid://dths4tvsuvevl" path="res://scenes/stations/wall_outlet.tscn" id="7_88ety"]
+[ext_resource type="PackedScene" uid="uid://cakkuqeanwy6k" path="res://scenes/stations/power_station.tscn" id="8_ahbqi"]
 
 [node name="test_level" type="Node2D" unique_id=1798701204]
 
@@ -32,3 +35,22 @@ position = Vector2(315, 325)
 turn_dir = -1
 
 [node name="HUD" parent="." unique_id=2065057990 instance=ExtResource("5_tmr53")]
+
+[node name="PowerCord" parent="." unique_id=1512386907 node_paths=PackedStringArray("node1", "node2") instance=ExtResource("6_qcd3b")]
+process_mode = 4
+visible = false
+socket_length = 1.0
+node1 = NodePath("../WallOutlet")
+node2 = NodePath("../PowerStation")
+node2_local_offset = Vector2(-10, 0)
+node2_local_angle_offset = 0.0
+
+[node name="WallOutlet" parent="." unique_id=746177045 instance=ExtResource("7_88ety")]
+process_mode = 4
+visible = false
+position = Vector2(226, 310)
+
+[node name="PowerStation" parent="." unique_id=1640194072 instance=ExtResource("8_ahbqi")]
+process_mode = 4
+visible = false
+position = Vector2(273, 273)

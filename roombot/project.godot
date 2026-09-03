@@ -28,6 +28,7 @@ window/stretch/mode="viewport"
 
 2d_physics/layer_1="Wall"
 2d_physics/layer_2="Roomba"
+2d_physics/layer_3="Station"
 
 [rendering]
 
