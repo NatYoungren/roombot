@@ -19,6 +19,7 @@ debug_color = Color(0.58824646, 0.29337206, 0, 0.5)
 
 [node name="mask" type="Sprite2D" parent="." unique_id=1776482422]
 clip_children = 1
+z_index = -5
 texture = SubResource("NoiseTexture2D_qyuj8")
 centered = false
 
