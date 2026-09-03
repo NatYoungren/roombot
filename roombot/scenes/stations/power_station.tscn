@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cakkuqeanwy6k"]
+
+[ext_resource type="Script" uid="uid://brydbu18c38os" path="res://scripts/stations/power_station.gd" id="1_7k6t8"]
+[ext_resource type="Texture2D" uid="uid://cxi3t53um4cut" path="res://assets/power_station.png" id="2_t414h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t414h"]
+size = Vector2(18, 18)
+
+[node name="PowerStation" type="Area2D" unique_id=1640194072]
+z_index = -6
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_7k6t8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1608417269]
+shape = SubResource("RectangleShape2D_t414h")
+
+[node name="OutlineSprite" type="Sprite2D" parent="." unique_id=676865204]
+visible = false
+modulate = Color(1, 1, 1, 0.5)
+texture = ExtResource("2_t414h")
+vframes = 4
+
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=1472916901]
+texture = ExtResource("2_t414h")
+vframes = 4
+frame = 1
+
+[node name="ShadingSprite" type="Sprite2D" parent="." unique_id=729140621]
+texture = ExtResource("2_t414h")
+vframes = 4
+frame = 2
+
+[node name="SymbolSprite" type="Sprite2D" parent="." unique_id=956733314]
+texture = ExtResource("2_t414h")
+vframes = 4
+frame = 3

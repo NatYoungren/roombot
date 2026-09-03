@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cpljcmr7m86qa"]
+
+[ext_resource type="Script" uid="uid://8xhhtdcjwncy" path="res://scripts/stations/power_cord.gd" id="1_a2vn8"]
+[ext_resource type="Texture2D" uid="uid://cdyvlhn37opbj" path="res://assets/plug.png" id="1_vsfnr"]
+
+[node name="PowerCord" type="Node2D" unique_id=1512386907]
+z_index = -2
+script = ExtResource("1_a2vn8")
+
+[node name="Plug1" type="Sprite2D" parent="." unique_id=1078963304]
+texture = ExtResource("1_vsfnr")
+hframes = 2
+
+[node name="Plug2" type="Sprite2D" parent="." unique_id=393392451]
+texture = ExtResource("1_vsfnr")
+flip_h = true
+hframes = 2

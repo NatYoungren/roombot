@@ -1,0 +1,137 @@
+extends Node2D
+
+
+@export var max_length: float = 100.0
+@export_range(2, 24, 1) var segment_count: int = 8
+@export_range(1, 12, 1) var solve_iterations: int = 6
+@export_range(0.0, 1.0, 0.01) var follow_strength: float = 0.35
+@export_range(0.0, 1.0, 0.01) var shape_strength: float = 0.35
+@export var cord_color: Color = Color(0.20, 0.18, 0.14)
+@export var cord_width: float = 3.0
+@export var plug_socket_length: float = 10.0
+
+@export var node1: Node2D
+@export var node2: Node2D
+@export var node1_local_offset: Vector2 = Vector2.ZERO
+@export var node2_local_offset: Vector2 = Vector2.ZERO
+@export var node1_local_angle_offset: float = 0.0
+@export var node2_local_angle_offset: float = PI
+
+@onready var plug1: Sprite2D = $Plug1
+@onready var plug2: Sprite2D = $Plug2
+
+var _points: Array[Vector2] = []
+
+
+func _ready() -> void:
+	_rebuild_points(true)
+	queue_redraw()
+
+
+func _process(delta: float) -> void:
+	if not is_instance_valid(node1) or not is_instance_valid(node2):
+		visible = false
+		return
+
+	visible = true
+
+	var start_point := _get_socket_point(node1, node1_local_offset, node1_local_angle_offset)
+	var end_point := _get_socket_point(node2, node2_local_offset, node2_local_angle_offset)
+	var desired_length: float = max(max_length, start_point.distance_to(end_point))
+
+	if _points.size() != segment_count + 1:
+		_rebuild_points(false)
+
+	var solved_points := _solve_chain(start_point, end_point, desired_length)
+	var blend := clampf(delta * 12.0 * follow_strength, 0.0, 1.0)
+
+	_points[0] = start_point
+	_points[_points.size() - 1] = end_point
+	for i in range(1, _points.size() - 1):
+		_points[i] = _points[i].lerp(solved_points[i], blend)
+
+	_update_plugs(start_point, end_point)
+	queue_redraw()
+
+
+func _draw() -> void:
+	if _points.size() < 2:
+		return
+
+	var local_points := PackedVector2Array()
+	local_points.resize(_points.size())
+	for i in range(_points.size()):
+		local_points[i] = to_local(_points[i])
+
+	draw_polyline(local_points, cord_color, cord_width, true)
+
+
+func _rebuild_points(force_line: bool) -> void:
+	_points.clear()
+	_points.resize(segment_count + 1)
+
+	if not is_instance_valid(node1) or not is_instance_valid(node2):
+		return
+
+	var start_point := _get_socket_point(node1, node1_local_offset, node1_local_angle_offset)
+	var end_point := _get_socket_point(node2, node2_local_offset, node2_local_angle_offset)
+	var direction := start_point.direction_to(end_point)
+	var curve_strength := start_point.distance_to(end_point) * 0.18 * shape_strength
+
+	for i in range(_points.size()):
+		var t := 0.0 if _points.size() == 1 else float(i) / float(_points.size() - 1)
+		var point := start_point.lerp(end_point, t)
+
+		if not force_line and i > 0 and i < _points.size() - 1:
+			var wave := sin(t * PI)
+			var bend := Vector2(-direction.y, direction.x)
+			point += bend * curve_strength * wave
+
+		_points[i] = point
+
+
+func _solve_chain(start_point: Vector2, end_point: Vector2, total_length: float) -> Array[Vector2]:
+	var solved: Array[Vector2] = _points.duplicate()
+	var point_count := solved.size()
+	if point_count < 2:
+		return solved
+
+	var segment_length := total_length / float(point_count - 1)
+	var max_iterations: int = max(1, solve_iterations)
+	var distance := start_point.distance_to(end_point)
+
+	if distance >= total_length:
+		var straight_dir := start_point.direction_to(end_point)
+		for i in range(point_count):
+			solved[i] = start_point + straight_dir * segment_length * float(i)
+		return solved
+
+	for _iteration in range(max_iterations):
+		solved[point_count - 1] = end_point
+		for i in range(point_count - 2, -1, -1):
+			var next_direction := solved[i].direction_to(solved[i + 1])
+			solved[i] = solved[i + 1] - next_direction * segment_length
+
+		solved[0] = start_point
+		for i in range(1, point_count):
+			var previous_direction := solved[i - 1].direction_to(solved[i])
+			solved[i] = solved[i - 1] + previous_direction * segment_length
+
+		solved[point_count - 1] = end_point
+
+	return solved
+
+
+func _get_socket_point(anchor: Node2D, local_offset: Vector2, local_angle_offset: float) -> Vector2:
+	var socket_origin := anchor.to_global(local_offset)
+	var socket_direction := Vector2.RIGHT.rotated(anchor.global_rotation + local_angle_offset)
+	return socket_origin + socket_direction * plug_socket_length
+
+
+func _update_plugs(start_point: Vector2, end_point: Vector2) -> void:
+	plug1.global_position = start_point
+	plug2.global_position = end_point
+
+	if _points.size() >= 2:
+		plug1.global_rotation = (_points[1] - _points[0]).angle()
+		plug2.global_rotation = (_points[_points.size() - 2] - _points[_points.size() - 1]).angle()

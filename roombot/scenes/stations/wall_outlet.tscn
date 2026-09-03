@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dths4tvsuvevl"]
+
+[ext_resource type="Script" uid="uid://b7t766x333bru" path="res://scripts/stations/wall_outlet.gd" id="1_874v3"]
+[ext_resource type="Texture2D" uid="uid://cdyvlhn37opbj" path="res://assets/plug.png" id="2_4lwnx"]
+
+[node name="WallOutlet" type="Node2D" unique_id=746177045]
+script = ExtResource("1_874v3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=953624092]
+texture = ExtResource("2_4lwnx")
+flip_h = true
+hframes = 2
