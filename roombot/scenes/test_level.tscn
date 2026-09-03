@@ -1,24 +1,34 @@
-[gd_scene load_steps=5 format=3 uid="uid://clbd3xh7l0wi5"]
+[gd_scene format=3 uid="uid://clbd3xh7l0wi5"]
 
 [ext_resource type="PackedScene" uid="uid://pkn2ikxrwsv8" path="res://scenes/house.tscn" id="1_paw1w"]
-[ext_resource type="PackedScene" uid="uid://dxauipst7macc" path="res://scenes/roomba_basic.tscn" id="2_j6w7d"]
+[ext_resource type="PackedScene" uid="uid://dxauipst7macc" path="res://scenes/roombas/roomba_basic.tscn" id="2_j6w7d"]
 [ext_resource type="PackedScene" uid="uid://dvg8316hkghy" path="res://scenes/filth_layer.tscn" id="2_x4b8f"]
-[ext_resource type="Script" uid="uid://dcb05868ql6t2" path="res://scripts/money_label.gd" id="5_tmr53"]
+[ext_resource type="PackedScene" uid="uid://dp1omvbo5p6sv" path="res://scenes/roombas/roomba_corner.tscn" id="5_qcd3b"]
+[ext_resource type="PackedScene" uid="uid://ylmya027krnu" path="res://scenes/hud.tscn" id="5_tmr53"]
 
-[node name="test_level" type="Node2D"]
+[node name="test_level" type="Node2D" unique_id=1798701204]
 
-[node name="House" parent="." instance=ExtResource("1_paw1w")]
+[node name="House" parent="." unique_id=1412589421 instance=ExtResource("1_paw1w")]
 
-[node name="filth_layer" parent="." instance=ExtResource("2_x4b8f")]
+[node name="filth_layer" parent="." unique_id=1106265721 instance=ExtResource("2_x4b8f")]
 position = Vector2(225, 160)
 img_size = Vector2i(352, 288)
 
-[node name="Roomba_Basic" parent="." instance=ExtResource("2_j6w7d")]
+[node name="Roomba_Basic" parent="." unique_id=389391744 instance=ExtResource("2_j6w7d")]
 position = Vector2(421, 351)
 
-[node name="money_label" type="Label" parent="."]
-offset_right = 328.0
-offset_bottom = 55.0
-theme_override_font_sizes/font_size = 40
-text = "MONEY"
-script = ExtResource("5_tmr53")
+[node name="Roomba_Corner" parent="." unique_id=1211233507 instance=ExtResource("5_qcd3b")]
+position = Vector2(340, 435)
+
+[node name="Roomba_Basic2" parent="." unique_id=344201598 instance=ExtResource("2_j6w7d")]
+position = Vector2(380, 278)
+
+[node name="Roomba_Basic3" parent="." unique_id=2104501039 instance=ExtResource("2_j6w7d")]
+position = Vector2(488, 302)
+turn_dir = -1
+
+[node name="Roomba_Basic4" parent="." unique_id=1265617901 instance=ExtResource("2_j6w7d")]
+position = Vector2(315, 325)
+turn_dir = -1
+
+[node name="HUD" parent="." unique_id=2065057990 instance=ExtResource("5_tmr53")]

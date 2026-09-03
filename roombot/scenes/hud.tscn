@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ylmya027krnu"]
+
+[ext_resource type="Script" uid="uid://dcb05868ql6t2" path="res://scripts/money_label.gd" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://bh16jty3jv8ue" path="res://scripts/hud_info.gd" id="2_oo0fn"]
+
+[node name="HUD" type="Node2D" unique_id=2065057990]
+
+[node name="money_label" type="Label" parent="." unique_id=733467885]
+offset_right = 328.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "MONEY"
+script = ExtResource("1_ahhtf")
+
+[node name="selection_info" type="Label" parent="." unique_id=1483570921]
+offset_top = 55.0
+offset_right = 328.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 18
+text = "INFO"
+script = ExtResource("2_oo0fn")
