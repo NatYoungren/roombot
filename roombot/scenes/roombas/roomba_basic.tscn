@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dxauipst7macc"]
+
+[ext_resource type="Script" uid="uid://bqw08d4gmla78" path="res://scripts/roomba_basic.gd" id="1_arrrk"]
+[ext_resource type="Texture2D" uid="uid://b2e84qnuufxfc" path="res://assets/roomba_basic.png" id="2_sipw8"]
+[ext_resource type="Script" uid="uid://dwl6ik1ryj0sa" path="res://scripts/cleaners/circle_cleaner.gd" id="3_4g0ax"]
+[ext_resource type="Script" uid="uid://bvc4hd371ra82" path="res://scripts/cleaners/rect_cleaner.gd" id="4_2jlxg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ia0pm"]
+radius = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arrrk"]
+radius = 16.0
+height = 32.0
+
+[node name="Roomba_Basic" type="CharacterBody2D" unique_id=1211233507 node_paths=PackedStringArray("outline_sprite", "bumper_area", "cleaner")]
+collision_layer = 2
+collision_mask = 3
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_arrrk")
+outline_sprite = NodePath("OutlineSprite")
+bumper_area = NodePath("bumper_area")
+cleaner = NodePath("CircleCleaner")
+
+[node name="OutlineSprite" type="Sprite2D" parent="." unique_id=32151200]
+visible = false
+modulate = Color(1, 1, 1, 0.5)
+texture_filter = 1
+texture = ExtResource("2_sipw8")
+vframes = 4
+
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=832787980]
+texture_filter = 1
+texture = ExtResource("2_sipw8")
+vframes = 4
+frame = 1
+
+[node name="BumperSprite" type="Sprite2D" parent="." unique_id=973192392]
+texture_filter = 1
+texture = ExtResource("2_sipw8")
+vframes = 4
+frame = 2
+
+[node name="ButtonSprite" type="Sprite2D" parent="." unique_id=1008624156]
+texture_filter = 1
+texture = ExtResource("2_sipw8")
+vframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=826623619]
+shape = SubResource("CircleShape2D_ia0pm")
+
+[node name="bumper_area" type="Area2D" parent="." unique_id=1491285838]
+visible = false
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bumper_area" unique_id=280493104]
+position = Vector2(2, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_arrrk")
+
+[node name="CircleCleaner" type="Node2D" parent="." unique_id=1237933187]
+script = ExtResource("3_4g0ax")
+reliability = 0.23
+
+[node name="RectCleaner" type="Node2D" parent="." unique_id=2085006647]
+script = ExtResource("4_2jlxg")

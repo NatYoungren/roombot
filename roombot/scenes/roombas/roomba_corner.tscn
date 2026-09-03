@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dp1omvbo5p6sv"]
+
+[ext_resource type="Script" uid="uid://rp3de3y5vd30" path="res://scripts/roomba_corner.gd" id="1_hme64"]
+[ext_resource type="Texture2D" uid="uid://ctbf5cbokidpy" path="res://assets/roomba_corner.png" id="2_l3fns"]
+[ext_resource type="Script" uid="uid://bvc4hd371ra82" path="res://scripts/cleaners/rect_cleaner.gd" id="4_x4tcy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3fns"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cg8r"]
+size = Vector2(18, 5)
+
+[node name="Roomba_Corner" type="CharacterBody2D" unique_id=1211233507 node_paths=PackedStringArray("outline_sprite", "bumper_area", "cleaner")]
+collision_layer = 2
+collision_mask = 3
+input_pickable = true
+motion_mode = 1
+script = ExtResource("1_hme64")
+outline_sprite = NodePath("OutlineSprite")
+bumper_area = NodePath("bumper_area")
+cleaner = NodePath("RectCleaner")
+
+[node name="OutlineSprite" type="Sprite2D" parent="." unique_id=1817556616]
+visible = false
+self_modulate = Color(1, 1, 1, 0.5)
+texture_filter = 1
+texture = ExtResource("2_l3fns")
+vframes = 4
+
+[node name="BodySprite" type="Sprite2D" parent="." unique_id=832787980]
+texture_filter = 1
+texture = ExtResource("2_l3fns")
+vframes = 4
+frame = 1
+
+[node name="BumperSprite" type="Sprite2D" parent="." unique_id=856356987]
+texture_filter = 1
+texture = ExtResource("2_l3fns")
+vframes = 4
+frame = 2
+
+[node name="ButtonSprite" type="Sprite2D" parent="." unique_id=840408737]
+texture_filter = 1
+texture = ExtResource("2_l3fns")
+vframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=826623619]
+shape = SubResource("RectangleShape2D_l3fns")
+
+[node name="bumper_area" type="Area2D" parent="." unique_id=1491285838]
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bumper_area" unique_id=280493104]
+position = Vector2(8.5, 2.9802322e-07)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_2cg8r")
+
+[node name="RectCleaner" type="Node2D" parent="." unique_id=2085006647]
+script = ExtResource("4_x4tcy")
+width = 20.0
+height = 20.0
+reliability = 0.3
