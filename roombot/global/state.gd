@@ -1,7 +1,14 @@
 ## Global singleton to hold game information
 extends Node
 
+# TODO: Add a 'freeze', which lets you select and adjust roomba settings.
+
+
 var current_level: Node2D
+
+# TODO: Make a filth_manager, to manage multiple filth_layers?
+var filth_layer: FilthLayer # Reference to the filth layer in the current level
+
 var all_roombas: Array = []
 
 var selected_object: Node2D
@@ -14,10 +21,6 @@ var money: float:
 		money_updated.emit(money)
 
 signal money_updated(new_amount: float)
-
-
-# TODO: Make a filth_manager, to manage multiple filth_layers.
-var filth_layer: FilthLayer # Reference to the filth layer in the current level
 
 
 func _process(_delta: float) -> void:
@@ -61,10 +64,8 @@ func _process(_delta: float) -> void:
 func _on_clicked_default(roomba: RoombaBase, button: int) -> void:
 	# print("Roomba clicked! Button: ", button)
 	if button == MOUSE_BUTTON_LEFT:
-		# print("Left click!")
 		_change_selection(roomba) # Select / display information w/ HUD
 	elif button == MOUSE_BUTTON_RIGHT:
-		# print("Right click!")
 		roomba.turn_dir *= -1 # Reverse turn direction
 
 func _change_selection(object: Node2D) -> void:
